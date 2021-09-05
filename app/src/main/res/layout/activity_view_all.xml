@@ -16,13 +16,15 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="These are the properties currently listed"
-        android:paddingTop="20dp"/>
+        android:text="PROPERTIES CURRENTLY LISTED"
+        android:paddingTop="20dp"
+        android:textColor="@color/teal_200"
+        android:textSize="20sp"/>
 
     <ListView
         android:id="@+id/lvProgram"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="50dp" />
+        android:paddingTop="55dp" />
 
 </RelativeLayout>
