@@ -34,7 +34,7 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/viewall"
+        android:id="@+id/viewAllButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -42,7 +42,7 @@
         android:text="View all properties" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/searchItemEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -50,7 +50,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="Search ... "
-        android:textStyle="italic"/>
+        android:textStyle="bold"/>
 
     <Button
         android:id="@+id/searchButton"
@@ -58,10 +58,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp"
         android:layout_marginEnd="11dp"
         android:layout_marginBottom="168dp"
-        android:layout_toEndOf="@+id/editTextTextPersonName"
         android:text="SEARCH" />
 
 
