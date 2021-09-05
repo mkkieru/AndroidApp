@@ -12,10 +12,10 @@
         <activity
             android:name=".ViewAll"
             android:exported="true">
-            <!-- <meta-data
+            <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.prettyalphas.ViewAll">
-            </meta-data>-->
+            </meta-data>
         </activity>
         <activity
             android:name=".MainActivity"
