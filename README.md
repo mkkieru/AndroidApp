@@ -36,7 +36,7 @@ git clone [https://github.com/mkkieru/AndroidApp.git].
 java
 android studio
 
-##Known Bugs
+Known Bugs
 There are no known bugs currently. The page works as expected.
 
 ##Support and Contact Details
