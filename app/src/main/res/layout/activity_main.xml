@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/background" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,7 +21,18 @@
         android:layout_marginTop="30dp"
         android:textSize="25sp"
         android:textStyle="bold"
-        android:textColor="@color/purple_500"/>
+        android:textColor="@color/mine"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:padding="40dp"
+        android:text="@string/text"
+        android:textColor="@color/teal_200"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
     <Button
         android:id="@+id/viewall"
         android:layout_width="wrap_content"
@@ -29,6 +41,28 @@
         android:layout_centerHorizontal="true"
         android:text="View all properties" />
 
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="168dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Search ... "
+        android:textStyle="italic"/>
+
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="191dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="168dp"
+        android:layout_toEndOf="@+id/editTextTextPersonName"
+        android:text="SEARCH" />
 
 
 </RelativeLayout>
