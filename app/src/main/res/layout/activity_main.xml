@@ -15,31 +15,24 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pretty Alphas"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
+        android:text="Pretty Alphas"
+        android:textColor="@color/teal_200"
         android:textSize="25sp"
-        android:textStyle="bold"
-        android:textColor="@color/mine"/>
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:padding="40dp"
+        android:padding="35dp"
         android:text="@string/text"
         android:textColor="@color/teal_200"
         android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <Button
-        android:id="@+id/viewAllButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="View all properties" />
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"/>
 
     <EditText
         android:id="@+id/searchItemEditText"
@@ -48,9 +41,9 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="168dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Search ... "
-        android:textStyle="bold"/>
+        android:inputType="textPersonName"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/searchButton"
@@ -59,10 +52,20 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp"
         android:layout_marginEnd="11dp"
+        android:layout_marginRight="2dp"
         android:layout_marginBottom="168dp"
         android:text="SEARCH" />
+
+    <Button
+        android:id="@+id/viewAllButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="View all properties"
+        android:layout_marginBottom="20dp"/>
+
 
 
 </RelativeLayout>
