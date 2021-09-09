@@ -14,5 +14,6 @@ public class ProgramViewHolder {
         itemImage = view.findViewById(R.id.imageView);
         programTitle= view.findViewById(R.id.textView1);
         programDescription = view.findViewById(R.id.textView2);
+
     }
 }

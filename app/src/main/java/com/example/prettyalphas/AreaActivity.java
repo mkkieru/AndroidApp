@@ -18,7 +18,7 @@ public class AreaActivity extends AppCompatActivity {
     String[] programName = {"Rental","For Sale","Rental"," For Sale", "Quick Sale","For Sale","Rental"};
     String[] programDescription = {"Studio room for rent", "Luxurious house for sale", "Bedsitter for rent","3 Bedroom fer sale","Urban home for sale","Maisonette for rent ","Single rooms for rent"};
     int [] programImages = {R.drawable.home1,R.drawable.home2,R.drawable.home3,R.drawable.home4,R.drawable.home5,R.drawable.home6,R.drawable.home7};
-
+ //
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

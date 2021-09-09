@@ -23,4 +23,5 @@ public class ViewAll extends AppCompatActivity {
         ProgramAdapter programAdapter = new ProgramAdapter(this, programName, programImages,programDescription);
         mlvprograms.setAdapter(programAdapter);
     }
+  
 }
