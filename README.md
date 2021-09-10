@@ -8,7 +8,6 @@ Requirements
 Installation
 Configuration
 Technologies Used
-java
 Known Bugs
 Support and Contact Details
 License
