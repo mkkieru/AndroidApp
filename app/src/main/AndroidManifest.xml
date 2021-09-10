@@ -10,21 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PrettyAlphas">
         <activity
-            android:name=".AreaActivity"
+            android:name=".UI.AreaActivity"
             android:exported="true" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.prettyalphas.MainActivity"/>
+                android:value="com.example.prettyalphas.UI.MainActivity"/>
         </activity>
         <activity
-            android:name=".ViewAll"
+            android:name=".UI.ViewAll"
             android:exported="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.prettyalphas.MainActivity"/>
+                android:value="com.example.prettyalphas.UI.MainActivity"/>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".UI.MainActivity"
             android:exported="true"
             android:theme="@style/NoActionBarTheme">
             <intent-filter>

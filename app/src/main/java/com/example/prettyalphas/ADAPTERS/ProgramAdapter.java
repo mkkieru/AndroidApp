@@ -1,15 +1,15 @@
-package com.example.prettyalphas;
+package com.example.prettyalphas.ADAPTERS;
 
 import android.content.Context;
-import android.content.pm.LabeledIntent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import com.example.prettyalphas.R;
 
 public class ProgramAdapter extends ArrayAdapter<String> {
     Context context;
@@ -28,7 +28,7 @@ public class ProgramAdapter extends ArrayAdapter<String> {
     public View getView(int position, View convertView,ViewGroup parent) {
 
         View singleItem = convertView;
-        ProgramViewHolder  holder = null;
+        ProgramViewHolder holder = null;
         if (singleItem == null){
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             singleItem = layoutInflater.inflate(R.layout.singlt_item,parent,false);
@@ -49,4 +49,18 @@ public class ProgramAdapter extends ArrayAdapter<String> {
         });
         return singleItem;
     }
+    public class ProgramViewHolder {
+
+        public ImageView itemImage;
+        public TextView programTitle;
+        public TextView programDescription;
+
+        public ProgramViewHolder(View view){
+            itemImage = view.findViewById(R.id.imageView);
+            programTitle= view.findViewById(R.id.textView1);
+            programDescription = view.findViewById(R.id.textView2);
+
+        }
+    }
+
 }

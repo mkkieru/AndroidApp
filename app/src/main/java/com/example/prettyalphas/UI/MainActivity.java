@@ -1,4 +1,4 @@
-package com.example.prettyalphas;
+package com.example.prettyalphas.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.prettyalphas.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
             //Toast.makeText(MainActivity.this, "Hello World!", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(MainActivity.this,ViewAll.class);
+            Intent intent = new Intent(MainActivity.this, ViewAll.class);
             startActivity(intent);
             }
         });
