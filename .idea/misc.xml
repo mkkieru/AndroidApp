@@ -6,11 +6,14 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.209375" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.209375" />
         <entry key="app/src/main/res/drawable/my_border.xml" value="0.209375" />
+        <entry key="app/src/main/res/layout/View_All.xml" value="0.13496376811594202" />
         <entry key="app/src/main/res/layout/activity_area.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_property_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_view_all.xml" value="0.21482339316734222" />
-        <entry key="app/src/main/res/layout/property_list_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_property_detail.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/property_list_item.xml" value="0.22" />
         <entry key="app/src/main/res/layout/singlt_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/test.xml" value="0.25" />
         <entry key="app/src/main/res/layout/view_all.xml" value="0.19322916666666667" />

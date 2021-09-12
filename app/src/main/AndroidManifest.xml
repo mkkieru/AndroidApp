@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.prettyalphas">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -11,18 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PrettyAlphas">
         <activity
-            android:name=".UI.AreaActivity"
-            android:exported="true" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.prettyalphas.UI.MainActivity"/>
-        </activity>
+            android:name=".UI.PropertyDetailActivity"
+            android:exported="true" />
         <activity
             android:name=".UI.ViewAll"
             android:exported="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.prettyalphas.UI.MainActivity"/>
+                android:value="com.example.prettyalphas.UI.MainActivity" />
         </activity>
         <activity
             android:name=".UI.MainActivity"

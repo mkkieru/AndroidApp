@@ -1,5 +1,8 @@
 package com.example.prettyalphas.models;
 
+import org.parceler.Parcel;
+
+@Parcel
 public class Property {
     /*
     CREATE TABLE properties(
@@ -15,6 +18,8 @@ public class Property {
     private String description;
     private Integer value;
     private String propertyImage;
+    public Property() {
+    }
 
     public Property(String type, String location, String description, Integer value, String propertyImage) {
         this.type = type;

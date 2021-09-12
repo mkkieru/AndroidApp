@@ -5,22 +5,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.prettyalphas.ADAPTERS.ProgramAdapter;
 import com.example.prettyalphas.ADAPTERS.PropertyListAdapter;
 import com.example.prettyalphas.Constants;
 import com.example.prettyalphas.R;
 import com.example.prettyalphas.models.Property;
 import com.example.prettyalphas.network.API;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
