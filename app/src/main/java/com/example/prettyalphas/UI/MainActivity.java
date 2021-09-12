@@ -26,29 +26,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        mViewAllProperties.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            Intent intent = new Intent(MainActivity.this, ViewAll.class);
-            startActivity(intent);
-            }
-        });
+        mViewAllProperties.setOnClickListener(this::onClick);
+        mSearchItem.setOnClickListener(this::onClick);
+    }
 
-        mSearchItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String area = mItemToSearch.getText().toString();
-                if (area.equals("")) {
-                    Toast.makeText(MainActivity.this, "Please Enter An Area ... ", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                else{
-                    Toast.makeText(MainActivity.this, "Searching ... ", Toast.LENGTH_SHORT).show();
+    public void onClick(View view) {
+        if (view == mSearchItem){
+            String area = mItemToSearch.getText().toString();
+            if (area.equals("")) {
+                Toast.makeText(MainActivity.this, "Please Enter An Area ... ", Toast.LENGTH_SHORT).show();
+            }
+            else{
+                Toast.makeText(MainActivity.this, "Searching ... ", Toast.LENGTH_SHORT).show();
                     /*Intent intent = new Intent(MainActivity.this, AreaActivity.class);
                     intent.putExtra("area", area);
                     startActivity(intent);*/
-                }
             }
-        });
+        }
+        if (view == mViewAllProperties){
+            Intent intent = new Intent(MainActivity.this, All_Properties.class);
+            startActivity(intent);
+        }
     }
 }

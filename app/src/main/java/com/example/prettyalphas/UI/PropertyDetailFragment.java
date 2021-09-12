@@ -23,7 +23,11 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link PropertyDetailFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
 public class PropertyDetailFragment extends Fragment {
 
     @BindView(R.id.restaurantImageView) ImageView mImageLabel;
@@ -35,13 +39,12 @@ public class PropertyDetailFragment extends Fragment {
     @BindView(R.id.addressTextView) TextView mAddressLabel;
     @BindView(R.id.saveRestaurantButton) TextView mSaveRestaurantButton;
 
-    private Property mProperty;
-
-
+    public Property mProperty;
 
     public PropertyDetailFragment() {
         // Required empty public constructor
     }
+
 
     public static PropertyDetailFragment newInstance(Property property) {
         PropertyDetailFragment propertyDetailFragment = new PropertyDetailFragment();
@@ -55,8 +58,9 @@ public class PropertyDetailFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         assert getArguments() != null;
-        mProperty = Parcels.unwrap(getArguments().getParcelable("property"));
+        mProperty = Parcels.unwrap(getArguments().getParcelable("properties"));
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -64,10 +68,12 @@ public class PropertyDetailFragment extends Fragment {
 
         View view =  inflater.inflate(R.layout.fragment_property_detail, container, false);
         ButterKnife.bind(this, view);
-
         Picasso.get().load(mProperty.getPropertyImage()).into(mImageLabel);
+
+
         mNameLabel.setText(mProperty.getType());
-        mRatingLabel.setText(mProperty.getLocation());
+        mCategoriesLabel.setText(mProperty.getLocation());
+        mRatingLabel.setText(Double.toString(mProperty.getValue()) + " KSH");
         mPhoneLabel.setText(mProperty.getValue());
         mAddressLabel.setText(mProperty.getLocation());
 

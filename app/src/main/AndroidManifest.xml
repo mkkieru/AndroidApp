@@ -15,7 +15,7 @@
             android:name=".UI.PropertyDetailActivity"
             android:exported="true" />
         <activity
-            android:name=".UI.ViewAll"
+            android:name=".UI.All_Properties"
             android:exported="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

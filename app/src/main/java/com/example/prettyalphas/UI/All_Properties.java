@@ -10,9 +10,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.prettyalphas.ADAPTERS.PropertyListAdapter;
 import com.example.prettyalphas.Constants;
 import com.example.prettyalphas.R;
+import com.example.prettyalphas.adapters.PropertyListAdapter;
 import com.example.prettyalphas.models.Property;
 import com.example.prettyalphas.network.API;
 
@@ -26,10 +26,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ViewAll extends AppCompatActivity {
-
-    private static final String TAG = ViewAll.class.getSimpleName();
-
+public class All_Properties extends AppCompatActivity {
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
     @BindView(R.id.errorTextView)
     TextView mErrorTextView;
@@ -37,12 +34,12 @@ public class ViewAll extends AppCompatActivity {
     ProgressBar mProgressBar;
 
     private PropertyListAdapter mAdapter;
+    public List<Property> restaurants;
 
-    public List<Property> properties;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test);
+        setContentView(R.layout.activity_all_properties);
         ButterKnife.bind(this);
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -57,27 +54,29 @@ public class ViewAll extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Property>> call, Response<List<Property>> response) {
                 hideProgressBar();
-                if (response.isSuccessful()){
-                    properties = response.body();
-                    mAdapter = new PropertyListAdapter(ViewAll.this,properties);
+
+                if (response.isSuccessful()) {
+                    restaurants = response.body();
+                    mAdapter = new PropertyListAdapter(All_Properties.this, restaurants);
                     mRecyclerView.setAdapter(mAdapter);
-                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ViewAll.this);
+                    RecyclerView.LayoutManager layoutManager =
+                            new LinearLayoutManager(All_Properties.this);
                     mRecyclerView.setLayoutManager(layoutManager);
                     mRecyclerView.setHasFixedSize(true);
+
                     showRestaurants();
-                }else {
+                } else {
                     showUnsuccessfulMessage();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Property>> call, Throwable t) {
-                Toast.makeText(ViewAll.this,t.getMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(All_Properties.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 hideProgressBar();
                 showFailureMessage();
             }
         });
-
     }
     private void showFailureMessage() {
         mErrorTextView.setText("Something went wrong. Please check your Internet connection and try again later");
@@ -96,5 +95,4 @@ public class ViewAll extends AppCompatActivity {
     private void hideProgressBar() {
         mProgressBar.setVisibility(View.GONE);
     }
-  
 }
