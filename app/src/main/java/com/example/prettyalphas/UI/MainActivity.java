@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         mViewAllProperties.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            //Toast.makeText(MainActivity.this, "Hello World!", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(MainActivity.this, ViewAll.class);
             startActivity(intent);
             }
