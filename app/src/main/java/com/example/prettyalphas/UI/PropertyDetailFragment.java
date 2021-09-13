@@ -28,7 +28,7 @@ import butterknife.ButterKnife;
  * Use the {@link PropertyDetailFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PropertyDetailFragment extends Fragment {
+ public class PropertyDetailFragment extends Fragment {
 
     @BindView(R.id.restaurantImageView) ImageView mImageLabel;
     @BindView(R.id.restaurantNameTextView) TextView mNameLabel;
@@ -39,7 +39,7 @@ public class PropertyDetailFragment extends Fragment {
     @BindView(R.id.addressTextView) TextView mAddressLabel;
     @BindView(R.id.saveRestaurantButton) TextView mSaveRestaurantButton;
 
-    public Property mProperty;
+    private Property mProperty;
 
     public PropertyDetailFragment() {
         // Required empty public constructor
@@ -49,7 +49,7 @@ public class PropertyDetailFragment extends Fragment {
     public static PropertyDetailFragment newInstance(Property property) {
         PropertyDetailFragment propertyDetailFragment = new PropertyDetailFragment();
         Bundle args = new Bundle();
-        args.putParcelable("restaurant", Parcels.wrap(property));
+        args.putParcelable("properties", Parcels.wrap(property));
         propertyDetailFragment.setArguments(args);
         return propertyDetailFragment;
     }
@@ -73,8 +73,8 @@ public class PropertyDetailFragment extends Fragment {
 
         mNameLabel.setText(mProperty.getType());
         mCategoriesLabel.setText(mProperty.getLocation());
-        mRatingLabel.setText(Double.toString(mProperty.getValue()) + " KSH");
-        mPhoneLabel.setText(mProperty.getValue());
+        //mRatingLabel.setText(Double.toString(mProperty.getValue()) + " KSH");
+        //mPhoneLabel.setText(mProperty.getValue());
         mAddressLabel.setText(mProperty.getLocation());
 
         return view;

@@ -4,13 +4,6 @@ import org.parceler.Parcel;
 
 @Parcel
 public class Property {
-    /*
-    CREATE TABLE properties(
-    id SERIAL PRIMARY KEY,
-    type VARCHAR,
-    location VARCHAR,
-    description VARCHAR,
-    value INT);*/
 
     private int id;
     private String type;
