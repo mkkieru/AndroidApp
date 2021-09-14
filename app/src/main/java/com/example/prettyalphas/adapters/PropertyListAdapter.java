@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.prettyalphas.R;
 import com.example.prettyalphas.UI.PropertyDetailActivity;
 import com.example.prettyalphas.models.Property;
+import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
@@ -55,8 +56,7 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
         ImageView mRestaurantImageView;
         @BindView(R.id.restaurantNameTextView) TextView mNameTextView;
         @BindView(R.id.categoryTextView) TextView mCategoryTextView;
-        @BindView(R.id.ratingTextView)
-        TextView mRatingTextView;
+
 
         private Context mContext;
 
@@ -68,9 +68,9 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
         }
 
         public void bindProperty(Property property) {
+            Picasso.get().load(property.getPropertyImage()).into(mRestaurantImageView);
             mNameTextView.setText(property.getType());
             mCategoryTextView.setText(property.getDescription());
-            mRatingTextView.setText("Value: " + property.getValue() + " KSH");
         }
         @Override
         public void onClick(View v) {

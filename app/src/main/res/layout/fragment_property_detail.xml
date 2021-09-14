@@ -39,13 +39,12 @@
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/ratingTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4.5/5"
-                android:id="@+id/ratingTextView"
                 android:layout_alignTop="@+id/restaurantNameTextView"
-                android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
 
@@ -124,7 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:background="@color/teal_200"
-                android:text="Save Restaurant"
+                android:text="Save Property"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
         </RelativeLayout>

@@ -79,7 +79,6 @@ import butterknife.ButterKnife;
 
         mNameLabel.setText(mProperty.getType());
         mCategoriesLabel.setText(mProperty.getLocation());
-        //mRatingLabel.setText(Double.toString(mProperty.getValue()) + " KSH");
         mPhoneLabel.setText(mProperty.getValue().toString());
         mAddressLabel.setText(mProperty.getLocation());
 
