@@ -12,8 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PrettyAlphas">
         <activity
+            android:name=".UI.property_location"
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.prettyalphas.UI.MainActivity" />
+        </activity>
+        <activity
             android:name=".UI.PropertyDetailActivity"
-            android:exported="true" />
+            android:exported="true" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.prettyalphas.UI.MainActivity" />
+        </activity>
         <activity
             android:name=".UI.All_Properties"
             android:exported="true">

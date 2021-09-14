@@ -32,15 +32,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClick(View view) {
         if (view == mSearchItem){
-            String area = mItemToSearch.getText().toString();
-            if (area.equals("")) {
+            String location = mItemToSearch.getText().toString();
+            if (location.equals("")) {
                 Toast.makeText(MainActivity.this, "Please Enter An Area ... ", Toast.LENGTH_SHORT).show();
             }
             else{
                 Toast.makeText(MainActivity.this, "Searching ... ", Toast.LENGTH_SHORT).show();
-                    /*Intent intent = new Intent(MainActivity.this, AreaActivity.class);
-                    intent.putExtra("area", area);
-                    startActivity(intent);*/
+                Intent intent = new Intent(MainActivity.this, property_location.class);
+                intent.putExtra("location", location);
+                startActivity(intent);
             }
         }
         if (view == mViewAllProperties){

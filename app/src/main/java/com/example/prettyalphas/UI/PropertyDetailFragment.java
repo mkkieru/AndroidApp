@@ -1,5 +1,7 @@
 package com.example.prettyalphas.UI;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.prettyalphas.R;
 import com.example.prettyalphas.models.Property;
@@ -68,14 +71,26 @@ import butterknife.ButterKnife;
 
         View view =  inflater.inflate(R.layout.fragment_property_detail, container, false);
         ButterKnife.bind(this, view);
-        Picasso.get().load(mProperty.getPropertyImage()).into(mImageLabel);
+        //Picasso.get().load(mProperty.getPropertyImage()).into(mImageLabel);
 
+        Picasso.get()
+                .load(mProperty.getPropertyImage())
+                .into(mImageLabel);
 
         mNameLabel.setText(mProperty.getType());
         mCategoriesLabel.setText(mProperty.getLocation());
         //mRatingLabel.setText(Double.toString(mProperty.getValue()) + " KSH");
-        //mPhoneLabel.setText(mProperty.getValue());
+        mPhoneLabel.setText(mProperty.getValue().toString());
         mAddressLabel.setText(mProperty.getLocation());
+
+        mPhoneLabel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent phoneIntent = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:" + mProperty.getValue()));
+                startActivity(phoneIntent);
+
+            }
+        });
 
         return view;
     }
