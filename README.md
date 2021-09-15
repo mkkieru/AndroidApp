@@ -19,6 +19,10 @@ It aims to provide a platform for property owners to login and post their proper
 These listed properties will be available for everyone with a copy of Pretty Alphas application to view all the properties
 and make an informed decision on where to relocated to.
 
+This app retrieves information from a personal API and displays it to the app user.
+
+API Endpoint [https://mark-android-api.herokuapp.com/properties]
+
 
 ## REQUIREMENTS
 These application requires a device that is running android OS.
