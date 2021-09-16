@@ -14,11 +14,13 @@ import com.example.prettyalphas.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     @BindView (R.id.viewAllButton) Button mViewAllProperties;
     @BindView (R.id.searchItemEditText) EditText mItemToSearch;
     @BindView (R.id.searchButton) Button mSearchItem;
+    @BindView(R.id.savedPropertyButton) Button mSavedPropertyButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +28,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        mViewAllProperties.setOnClickListener(this::onClick);
-        mSearchItem.setOnClickListener(this::onClick);
+        mViewAllProperties.setOnClickListener(this);
+        mSearchItem.setOnClickListener(this);
+        mSavedPropertyButton.setOnClickListener(this);
     }
 
     public void onClick(View view) {
@@ -45,6 +48,10 @@ public class MainActivity extends AppCompatActivity {
         }
         if (view == mViewAllProperties){
             Intent intent = new Intent(MainActivity.this, All_Properties.class);
+            startActivity(intent);
+        }
+        if (view == mSavedPropertyButton) {
+            Intent intent = new Intent(MainActivity.this, SavedPropertyListActivity.class);
             startActivity(intent);
         }
     }

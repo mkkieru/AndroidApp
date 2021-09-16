@@ -14,8 +14,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.prettyalphas.Constants;
 import com.example.prettyalphas.R;
 import com.example.prettyalphas.models.Property;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -31,7 +34,7 @@ import butterknife.ButterKnife;
  * Use the {@link PropertyDetailFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
- public class PropertyDetailFragment extends Fragment {
+ public class PropertyDetailFragment extends Fragment implements View.OnClickListener {
 
     @BindView(R.id.restaurantImageView) ImageView mImageLabel;
     @BindView(R.id.restaurantNameTextView) TextView mNameLabel;
@@ -82,15 +85,25 @@ import butterknife.ButterKnife;
         mPhoneLabel.setText(mProperty.getValue().toString());
         mAddressLabel.setText(mProperty.getLocation());
 
-        mPhoneLabel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent phoneIntent = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:" + mProperty.getValue()));
-                startActivity(phoneIntent);
 
-            }
-        });
+
+        mPhoneLabel.setOnClickListener(this);
+        mSaveRestaurantButton.setOnClickListener(this);
 
         return view;
+    }
+    @Override
+    public void onClick(View v) {
+        if (v == mSaveRestaurantButton) {
+            DatabaseReference restaurantRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_RESTAURANTS);
+            restaurantRef.push().setValue(mProperty);
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+        }
+        if (v == mPhoneLabel){
+            Intent phoneIntent = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:" + mProperty.getValue()));
+            startActivity(phoneIntent);
+        }
     }
 }

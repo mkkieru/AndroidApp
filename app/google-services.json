@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "274660259014",
+    "project_id": "pretty-alphas",
+    "storage_bucket": "pretty-alphas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:274660259014:android:d33f1390cbd4e6e93453c7",
+        "android_client_info": {
+          "package_name": "com.example.prettyalphas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "274660259014-47jg4lrsf4i3f061gmn0gfd8h89j2naj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.prettyalphas",
+            "certificate_hash": "9eab8bf3052b7264b7fc1bed71b44d61441fa107"
+          }
+        },
+        {
+          "client_id": "274660259014-4os6331plrmkvf06gobo0v8ueabpnhfk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCxIcO-A7yKdDANNrJyKlA9LRRO_GgIPE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "274660259014-4os6331plrmkvf06gobo0v8ueabpnhfk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
