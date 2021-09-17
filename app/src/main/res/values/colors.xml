@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="mine">#D1C4E9</color>
     <color name="whiteSmoke">#F5F5F5</color>
+    <color name="orange">#FFA500</color>
 </resources>

@@ -12,6 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PrettyAlphas">
         <activity
+            android:name=".UI.LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".UI.CreateAccountActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".UI.SavedPropertyListActivity"
             android:exported="true" />
         <activity
@@ -29,7 +41,7 @@
                 android:value="com.example.prettyalphas.UI.MainActivity" />
         </activity>
         <activity
-            android:name=".UI.All_Properties"
+            android:name=".UI.PropertyListActivity"
             android:exported="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -37,13 +49,7 @@
         </activity>
         <activity
             android:name=".UI.MainActivity"
-            android:exported="true"
-            android:theme="@style/NoActionBarTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="true">
         </activity>
     </application>
 

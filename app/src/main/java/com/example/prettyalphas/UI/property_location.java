@@ -1,5 +1,7 @@
 package com.example.prettyalphas.UI;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -51,7 +54,7 @@ public class property_location extends AppCompatActivity {
                 .build();
         API api = retrofit.create(API.class);
 
-        Call<List<Property>> call = api.getPropertiesInASpecificLocation(location);
+        Call<List<Property>> call = api.getPropertiesInASpecificLocation();
 
         call.enqueue(new Callback<List<Property>>() {
             @Override
@@ -68,7 +71,9 @@ public class property_location extends AppCompatActivity {
                     mRecyclerView2.setHasFixedSize(true);
 
                     showRestaurants();
+
                 } else {
+                    //Log.d(TAG, "onResponse: "+ restaurants);
                     showUnsuccessfulMessage();
                 }
             }
@@ -77,7 +82,9 @@ public class property_location extends AppCompatActivity {
             public void onFailure(Call<List<Property>> call, Throwable t) {
                 Toast.makeText(property_location.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 hideProgressBar();
+                //Log.d(TAG, "onFailure: ", t);
                 showFailureMessage();
+
             }
         });
     }

@@ -14,8 +14,6 @@ public interface API {
     Call<List<Property>> getProperties();
 
     @GET("/properties")
-    Call<List<Property>> getPropertiesInASpecificLocation(
-            @Query("location") String location
-    );
+    Call<List<Property>> getPropertiesInASpecificLocation();
 
 }
