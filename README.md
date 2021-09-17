@@ -18,6 +18,7 @@ Pretty Alphas in an android application that aims to bridge the existing gap bet
 It aims to provide a platform for property owners to login and post their properties.
 These listed properties will be available for everyone with a copy of Pretty Alphas application to view all the properties
 and make an informed decision on where to relocated to.
+It allows users to create accounts and log in to view saved properties in accordance to the user currently logged in.
 
 This app retrieves information from a personal API and displays it to the app user.
 
@@ -32,7 +33,7 @@ To get a copy of Pretty Alphas, clone this repository to your local machine usin
 git clone [https://github.com/mkkieru/AndroidApp.git].
 
 ## CONFIGURATION
-1. synchronize the build.gradle file and let it download all the dependancies it requires for the app to function.
+1. synchronize the build.gradle file and let it download all the dependencies it requires for the app to function.
 2. Run the app using the 'play' icon on the menu bar
 
 ## Technologies Used
