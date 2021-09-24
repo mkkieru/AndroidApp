@@ -32,6 +32,9 @@ These application requires a device that is running android OS.
 To get a copy of Pretty Alphas, clone this repository to your local machine using the following command:
 git clone [https://github.com/mkkieru/AndroidApp.git].
 
+These are the icon used:
+[src/main/res/mipmap-hdpi/baseline_call_black_18.png]
+
 ## CONFIGURATION
 1. synchronize the build.gradle file and let it download all the dependencies it requires for the app to function.
 2. Run the app using the 'play' icon on the menu bar
