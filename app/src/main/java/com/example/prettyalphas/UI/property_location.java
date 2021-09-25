@@ -20,6 +20,7 @@ import com.example.prettyalphas.R;
 import com.example.prettyalphas.adapters.PropertyListAdapter;
 import com.example.prettyalphas.models.Property;
 import com.example.prettyalphas.network.API;
+import com.example.prettyalphas.util.OnPropertySelectedListener;
 
 import java.util.List;
 
@@ -38,6 +39,8 @@ public class property_location extends AppCompatActivity {
 
     private PropertyListAdapter mAdapter;
     public List<Property> restaurants;
+
+    private OnPropertySelectedListener mOnRestaurantSelectedListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +66,7 @@ public class property_location extends AppCompatActivity {
 
                 if (response.isSuccessful()) {
                     restaurants = response.body();
-                    mAdapter = new PropertyListAdapter(property_location.this, restaurants);
+                    mAdapter = new PropertyListAdapter(property_location.this, restaurants,mOnRestaurantSelectedListener);
                     mRecyclerView2.setAdapter(mAdapter);
                     RecyclerView.LayoutManager layoutManager =
                             new LinearLayoutManager(property_location.this);

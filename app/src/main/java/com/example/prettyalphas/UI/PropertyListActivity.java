@@ -21,7 +21,9 @@ import com.example.prettyalphas.R;
 import com.example.prettyalphas.adapters.PropertyListAdapter;
 import com.example.prettyalphas.models.Property;
 import com.example.prettyalphas.network.API;
+import com.example.prettyalphas.util.OnPropertySelectedListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -32,7 +34,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class PropertyListActivity extends AppCompatActivity {
+public class PropertyListActivity extends AppCompatActivity implements OnPropertySelectedListener {
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
     @BindView(R.id.errorTextView)
     TextView mErrorTextView;
@@ -49,6 +51,11 @@ public class PropertyListActivity extends AppCompatActivity {
     private PropertyListAdapter mAdapter;
     public List<Property> restaurants;
 
+    private Integer mPosition;
+    List<Property> mRestaurants;
+
+    private OnPropertySelectedListener restaurantSelectedListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,13 +63,22 @@ public class PropertyListActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        //mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
 
-        /*if(mRecentAddress != null){
+        /*
+        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
+
+        if(mRecentAddress != null){
             fetchRestaurants(mRecentAddress);
-        }*/
+        }
+        */
         fetchProperties();
     }
+    @Override
+    public void onRestaurantSelected(Integer position, List<Property> restaurants) {
+        mPosition = position;
+        mRestaurants = restaurants;
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -137,7 +153,7 @@ public class PropertyListActivity extends AppCompatActivity {
 
                 if (response.isSuccessful()) {
                     restaurants = response.body();
-                    mAdapter = new PropertyListAdapter(PropertyListActivity.this, restaurants);
+                    mAdapter = new PropertyListAdapter(PropertyListActivity.this, restaurants,restaurantSelectedListener);
                     mRecyclerView.setAdapter(mAdapter);
                     RecyclerView.LayoutManager layoutManager =
                             new LinearLayoutManager(PropertyListActivity.this);

@@ -11,6 +11,8 @@ public class Property {
     private String description;
     private Integer value;
     private String propertyImage;
+    private String pushId;
+
 
     public Property() {}
 
@@ -68,5 +70,12 @@ public class Property {
 
     public Integer getValue() {
         return value;
+    }
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
     }
 }

@@ -2,6 +2,7 @@ package com.example.prettyalphas.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.prettyalphas.R;
 import com.example.prettyalphas.UI.PropertyDetailActivity;
 import com.example.prettyalphas.models.Property;
+import com.example.prettyalphas.util.OnPropertySelectedListener;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -24,18 +26,25 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapter.PropertyVieHolder> {
+    private static final int MAX_WIDTH = 200;
+    private static final int MAX_HEIGHT = 200;
+
     private List<Property> mProperties;
     private Context mContext;
+    private OnPropertySelectedListener mOnRestaurantSelectedListener;
 
-    public PropertyListAdapter(Context mContext,List<Property> mProperties) {
+
+    public PropertyListAdapter(Context mContext,List<Property> mProperties, OnPropertySelectedListener restaurantSelectedListener) {
         this.mProperties = mProperties;
         this.mContext = mContext;
+        mOnRestaurantSelectedListener = restaurantSelectedListener;
+
     }
 
     @Override
     public PropertyListAdapter.PropertyVieHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.property_list_item, parent, false);
-        PropertyVieHolder viewHolder = new PropertyVieHolder(view);
+        PropertyVieHolder viewHolder = new PropertyVieHolder(view, mProperties, mOnRestaurantSelectedListener);
         return viewHolder;
     }
 
@@ -59,11 +68,22 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
 
 
         private Context mContext;
+        private int mOrientation;
+        private List<Property> mRestaurants;
+        private OnPropertySelectedListener mRestaurantSelectedListener;
 
-        public PropertyVieHolder(View itemView) {
+
+        public PropertyVieHolder(View itemView, List<Property> mProperties, OnPropertySelectedListener restaurantSelectedListener) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+            mOrientation = itemView.getResources().getConfiguration().orientation;
+            mRestaurants = mProperties;
+            mRestaurantSelectedListener = restaurantSelectedListener;
+
+            /* if (mOrientation == Configuration.ORIENTATION_LANDSCAPE){
+                createDetailFragment(0);
+            }*/
             itemView.setOnClickListener(this);
         }
 

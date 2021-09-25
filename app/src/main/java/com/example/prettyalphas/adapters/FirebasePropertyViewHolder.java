@@ -12,6 +12,8 @@ import com.example.prettyalphas.Constants;
 import com.example.prettyalphas.R;
 import com.example.prettyalphas.UI.PropertyDetailActivity;
 import com.example.prettyalphas.models.Property;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -52,7 +54,9 @@ public class FirebasePropertyViewHolder extends RecyclerView.ViewHolder implemen
     @Override
     public void onClick(View view) {
         final ArrayList<Property> properties = new ArrayList<>();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RESTAURANTS);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(Constants.FIREBASE_CHILD_RESTAURANTS).child(uid);
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
