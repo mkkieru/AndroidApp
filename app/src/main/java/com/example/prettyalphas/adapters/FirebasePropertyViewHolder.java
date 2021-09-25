@@ -2,6 +2,9 @@ package com.example.prettyalphas.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,6 +26,7 @@ import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class FirebasePropertyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -43,12 +47,30 @@ public class FirebasePropertyViewHolder extends RecyclerView.ViewHolder implemen
         TextView categoryTextView = (TextView) mView.findViewById(R.id.categoryTextView);
         TextView ratingTextView = (TextView) mView.findViewById(R.id.ratingTextView);
 
+        if (!property.getPropertyImage().contains("http")) {
+            try {
+                Bitmap imageBitmap = decodeFromFirebaseBase64(property.getPropertyImage());
+                restaurantImageView.setImageBitmap(imageBitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            // This block of code should already exist, we're just moving it to the 'else' statement:
+            nameTextView.setText(property.getType());
+            categoryTextView.setText(property.getDescription());
+            //ratingTextView.setText(property.getValue());
+        }
+
         Picasso.get().load(property.getPropertyImage()).into(restaurantImageView);
 
 
         nameTextView.setText(property.getType());
         categoryTextView.setText(property.getDescription());
         //ratingTextView.setText(property.getValue());
+    }
+    public static Bitmap decodeFromFirebaseBase64(String image) throws IOException {
+        byte[] decodedByteArray = android.util.Base64.decode(image, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedByteArray, 0, decodedByteArray.length);
     }
 
     @Override
