@@ -28,6 +28,7 @@ import org.parceler.Parcels;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FirebasePropertyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -56,12 +57,13 @@ public class FirebasePropertyViewHolder extends RecyclerView.ViewHolder implemen
             }
         } else {
             // This block of code should already exist, we're just moving it to the 'else' statement:
+            Picasso.get().load(property.getPropertyImage()).into(restaurantImageView);
+
             nameTextView.setText(property.getType());
             categoryTextView.setText(property.getDescription());
-            //ratingTextView.setText(property.getValue());
         }
 
-        Picasso.get().load(property.getPropertyImage()).into(restaurantImageView);
+        //Picasso.get().load(property.getPropertyImage()).into(restaurantImageView);
 
 
         nameTextView.setText(property.getType());
