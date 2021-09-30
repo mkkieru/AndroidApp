@@ -1,15 +1,15 @@
 package com.example.prettyalphas.adapters;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,48 +17,35 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.prettyalphas.R;
 import com.example.prettyalphas.UI.PropertyDetailActivity;
 import com.example.prettyalphas.models.Property;
-import com.example.prettyalphas.util.OnPropertySelectedListener;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
 
+import java.io.IOException;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapter.PropertyVieHolder> {
-    private static final int MAX_WIDTH = 200;
-    private static final int MAX_HEIGHT = 200;
-
     private List<Property> mProperties;
     private Context mContext;
-    private OnPropertySelectedListener mOnRestaurantSelectedListener;
 
-
-    public PropertyListAdapter(Context mContext,List<Property> mProperties, OnPropertySelectedListener restaurantSelectedListener) {
+    public PropertyListAdapter(Context mContext,List<Property> mProperties) {
         this.mProperties = mProperties;
         this.mContext = mContext;
-        mOnRestaurantSelectedListener = restaurantSelectedListener;
-
     }
 
     @Override
     public PropertyListAdapter.PropertyVieHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.property_list_item, parent, false);
-        PropertyVieHolder viewHolder = new PropertyVieHolder(view, mProperties, mOnRestaurantSelectedListener);
+        PropertyVieHolder viewHolder = new PropertyVieHolder(view);
         return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(PropertyListAdapter.PropertyVieHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(PropertyListAdapter.PropertyVieHolder holder, int position) {
         holder.bindProperty(mProperties.get(position));
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //holder.onClick(position);
-            }
-        });
     }
 
     @Override
@@ -68,7 +55,7 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
 
 
 
-    public class PropertyVieHolder extends RecyclerView.ViewHolder {
+    public class PropertyVieHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.restaurantImageView)
         ImageView mRestaurantImageView;
         @BindView(R.id.restaurantNameTextView) TextView mNameTextView;
@@ -76,39 +63,42 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
 
 
         private Context mContext;
-        private int mOrientation;
-        private List<Property> mRestaurants;
-        private OnPropertySelectedListener mRestaurantSelectedListener;
 
-
-        public PropertyVieHolder(View itemView, List<Property> mProperties, OnPropertySelectedListener restaurantSelectedListener) {
+        public PropertyVieHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
-            mOrientation = itemView.getResources().getConfiguration().orientation;
-            mRestaurants = mProperties;
-            mRestaurantSelectedListener = restaurantSelectedListener;
-
-            /* if (mOrientation == Configuration.ORIENTATION_LANDSCAPE){
-                createDetailFragment(0);
-            }*/
-            //itemView.setOnClickListener(this);
+            itemView.setOnClickListener(this);
         }
 
         public void bindProperty(Property property) {
-            Picasso.get().load(property.getPropertyImage()).into(mRestaurantImageView);
+
+            if (!property.getPropertyImage().contains("http")) {
+                try {
+                    Bitmap image = decodeFromFirebaseBase64(property.getPropertyImage());
+                    mRestaurantImageView.setImageBitmap(image);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Picasso.get().load(property.getPropertyImage()).into(mRestaurantImageView);
+            }
+
+            //Picasso.get().load(property.getPropertyImage()).into(mRestaurantImageView);
             mNameTextView.setText(property.getType());
             mCategoryTextView.setText(property.getDescription());
         }
-
-        public void onClick(int itemPosition) {
-            //int itemPosition = getLayoutPosition();
+        @Override
+        public void onClick(View v) {
+            int itemPosition = getLayoutPosition();
             Intent intent = new Intent(mContext, PropertyDetailActivity.class);
             intent.putExtra("position", itemPosition);
             intent.putExtra("properties", Parcels.wrap(mProperties));
             mContext.startActivity(intent);
-
-            Toast.makeText(mContext,"Item clicked ", Toast.LENGTH_SHORT).show();
+        }
+        public Bitmap decodeFromFirebaseBase64(String image) throws IOException {
+            byte[] decodedByteArray = android.util.Base64.decode(image, Base64.DEFAULT);
+            return BitmapFactory.decodeByteArray(decodedByteArray, 0, decodedByteArray.length);
         }
     }
 }

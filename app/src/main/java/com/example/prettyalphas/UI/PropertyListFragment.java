@@ -122,7 +122,7 @@ public class PropertyListFragment extends Fragment {
 
                     @Override
                     public void run() {
-                        mAdapter = new PropertyListAdapter(getActivity(), restaurants, mOnRestaurantSelectedListener);
+                        mAdapter = new PropertyListAdapter(getActivity(), restaurants);
                         // Line above states `getActivity()` instead of previous
                         // 'getApplicationContext()' because fragments do not have own context,
                         // must instead inherit it from corresponding activity.

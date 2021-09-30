@@ -230,15 +230,6 @@ public class PropertyDetailFragment extends Fragment implements View.OnClickList
 
         return inSampleSize;
     }
-    /*
-    private void addrestaurantPicsToGallery() {
-        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        File restaurantFile = new File(currentPhotoPath);
-        Uri restaurantPhotoUri = Uri.fromFile(restaurantFile);
-        mediaScanIntent.setData(restaurantPhotoUri);
-        getActivity().sendBroadcast(mediaScanIntent);
-    }
-    */
 
     public void encodeBitmapAndSaveToFirebase(Bitmap bitmap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -284,7 +275,7 @@ public class PropertyDetailFragment extends Fragment implements View.OnClickList
         return view;
     }
 
-    public static Bitmap decodeFromFirebaseBase64(String image) throws IOException {
+   public static Bitmap decodeFromFirebaseBase64(String image) throws IOException {
         byte[] decodedByteArray = android.util.Base64.decode(image, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(decodedByteArray, 0, decodedByteArray.length);
     }
@@ -306,18 +297,15 @@ public class PropertyDetailFragment extends Fragment implements View.OnClickList
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if(dataSnapshot.exists()) {
-                        Toast.makeText(getContext(), "This Restaurant already exists in your saved restaurants", Toast.LENGTH_LONG).show();
-
+                        Toast.makeText(getContext(), "Already Saved", Toast.LENGTH_SHORT).show();
                     } else{
                         DatabaseReference pushRef = restaurantRef.push();
                         String pushId = pushRef.getKey();
                         mProperty.setPushId(pushId);
                         pushRef.setValue(mProperty);
                         Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
-
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 

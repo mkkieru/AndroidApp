@@ -27,7 +27,11 @@
         </activity>
         <activity
             android:name=".UI.SavedPropertyListActivity"
-            android:exported="true" />
+            android:exported="true" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.prettyalphas.UI.MainActivity" />
+        </activity>
         <activity
             android:name=".UI.property_location"
             android:exported="true">

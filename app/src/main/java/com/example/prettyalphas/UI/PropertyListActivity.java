@@ -34,7 +34,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class PropertyListActivity extends AppCompatActivity implements OnPropertySelectedListener {
+public class PropertyListActivity extends AppCompatActivity{
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
     @BindView(R.id.errorTextView)
     TextView mErrorTextView;
@@ -72,11 +72,6 @@ public class PropertyListActivity extends AppCompatActivity implements OnPropert
         }
         */
         fetchProperties();
-    }
-    @Override
-    public void onRestaurantSelected(Integer position, List<Property> restaurants) {
-        mPosition = position;
-        mRestaurants = restaurants;
     }
 
     @Override
@@ -153,7 +148,7 @@ public class PropertyListActivity extends AppCompatActivity implements OnPropert
 
                 if (response.isSuccessful()) {
                     restaurants = response.body();
-                    mAdapter = new PropertyListAdapter(PropertyListActivity.this, restaurants,restaurantSelectedListener);
+                    mAdapter = new PropertyListAdapter(PropertyListActivity.this, restaurants);
                     mRecyclerView.setAdapter(mAdapter);
                     RecyclerView.LayoutManager layoutManager =
                             new LinearLayoutManager(PropertyListActivity.this);

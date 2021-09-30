@@ -5,13 +5,13 @@ import org.parceler.Parcel;
 @Parcel
 public class Property {
 
-    private int id;
-    private String type;
-    private String location;
-    private String description;
-    private Integer value;
-    private String propertyImage;
-    private String pushId;
+     int id;
+     String type;
+     String location;
+     String description;
+     Integer value;
+     String propertyImage;
+     String pushId;
 
 
     public Property() {}

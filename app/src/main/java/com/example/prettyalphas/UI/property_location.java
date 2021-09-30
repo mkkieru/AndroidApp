@@ -66,7 +66,7 @@ public class property_location extends AppCompatActivity {
 
                 if (response.isSuccessful()) {
                     restaurants = response.body();
-                    mAdapter = new PropertyListAdapter(property_location.this, restaurants,mOnRestaurantSelectedListener);
+                    mAdapter = new PropertyListAdapter(property_location.this, restaurants);
                     mRecyclerView2.setAdapter(mAdapter);
                     RecyclerView.LayoutManager layoutManager =
                             new LinearLayoutManager(property_location.this);
