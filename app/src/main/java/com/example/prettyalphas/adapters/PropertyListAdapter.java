@@ -1,5 +1,6 @@
 package com.example.prettyalphas.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,8 +51,14 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
     }
 
     @Override
-    public void onBindViewHolder(PropertyListAdapter.PropertyVieHolder holder, int position) {
+    public void onBindViewHolder(PropertyListAdapter.PropertyVieHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.bindProperty(mProperties.get(position));
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //holder.onClick(position);
+            }
+        });
     }
 
     @Override
@@ -60,7 +68,7 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
 
 
 
-    public class PropertyVieHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class PropertyVieHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.restaurantImageView)
         ImageView mRestaurantImageView;
         @BindView(R.id.restaurantNameTextView) TextView mNameTextView;
@@ -84,7 +92,7 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
             /* if (mOrientation == Configuration.ORIENTATION_LANDSCAPE){
                 createDetailFragment(0);
             }*/
-            itemView.setOnClickListener(this);
+            //itemView.setOnClickListener(this);
         }
 
         public void bindProperty(Property property) {
@@ -92,13 +100,15 @@ public class PropertyListAdapter extends RecyclerView.Adapter<PropertyListAdapte
             mNameTextView.setText(property.getType());
             mCategoryTextView.setText(property.getDescription());
         }
-        @Override
-        public void onClick(View v) {
-            int itemPosition = getLayoutPosition();
+
+        public void onClick(int itemPosition) {
+            //int itemPosition = getLayoutPosition();
             Intent intent = new Intent(mContext, PropertyDetailActivity.class);
             intent.putExtra("position", itemPosition);
             intent.putExtra("properties", Parcels.wrap(mProperties));
             mContext.startActivity(intent);
+
+            Toast.makeText(mContext,"Item clicked ", Toast.LENGTH_SHORT).show();
         }
     }
 }

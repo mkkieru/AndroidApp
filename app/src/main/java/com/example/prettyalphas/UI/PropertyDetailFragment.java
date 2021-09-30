@@ -231,7 +231,6 @@ public class PropertyDetailFragment extends Fragment implements View.OnClickList
         return inSampleSize;
     }
     /*
-
     private void addrestaurantPicsToGallery() {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         File restaurantFile = new File(currentPhotoPath);

@@ -37,5 +37,7 @@ public class PropertyDetailActivity extends AppCompatActivity {
         adapterViewPager = new PropertyPagerAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, mProperties);
         mViewPager.setAdapter(adapterViewPager);
         mViewPager.setCurrentItem(startingPosition);
+
+
     }
 }
