@@ -55,11 +55,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PropertyDetailFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class PropertyDetailFragment extends Fragment implements View.OnClickListener {
 
     @BindView(R.id.restaurantImageView) ImageView mImageLabel;
@@ -185,13 +180,9 @@ public class PropertyDetailFragment extends Fragment implements View.OnClickList
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == getActivity().RESULT_OK) {
             Toast.makeText(getContext(), "Image saved!!", Toast.LENGTH_LONG).show();
-            // For those saving their files in directories private to their apps
-            // addrestaurantPicsToGallery();
-            // Get the dimensions of the View
             int targetW = mImageLabel.getWidth()/3;
             int targetH = mImageLabel.getHeight()/2;
 
-            // Get the dimensions of the bitmap
             BitmapFactory.Options bmOptions = new BitmapFactory.Options();
             bmOptions.inJustDecodeBounds = true;
             BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
@@ -201,27 +192,23 @@ public class PropertyDetailFragment extends Fragment implements View.OnClickList
             int photoH = bmOptions.outHeight;
 
 
-            // Alternative way of determining how much to scale down the image. This can be used as the inSampleSize value
-            int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+            //int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
 
 
-            // Decode the image file into a Bitmap sized to fill the View
 
             bmOptions.inSampleSize = calculateInSampleSize(bmOptions, targetW, targetH);
             bmOptions.inJustDecodeBounds = false;
 
             Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath, bmOptions);
 
-//            String width = String.valueOf(bitmap.getWidth());
-//            String length = String.valueOf(bitmap.getHeight());
-//            Log.d(width, length);
+            String width = String.valueOf(bitmap.getWidth());
+            String length = String.valueOf(bitmap.getHeight());
+            Log.d(width, length);
             mImageLabel.setImageBitmap(bitmap);
             encodeBitmapAndSaveToFirebase(bitmap);
         }
     }
 
-    //      This method calculates the inSample Size variabel based on the lenght and width of the supposed  view in our restaurant app
-//
     public static int calculateInSampleSize(
             BitmapFactory.Options options, int reqWidth, int reqHeight) {
         // Raw height and width of image
@@ -235,8 +222,6 @@ public class PropertyDetailFragment extends Fragment implements View.OnClickList
             final int halfHeight = height / 2;
             final int halfWidth = width / 2;
 
-            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
-            // height and width larger than the requested height and width.
             while ((halfHeight / inSampleSize) >= reqHeight
                     && (halfWidth / inSampleSize) >= reqWidth) {
                 inSampleSize *= 2;
@@ -245,6 +230,7 @@ public class PropertyDetailFragment extends Fragment implements View.OnClickList
 
         return inSampleSize;
     }
+    /*
     private void addrestaurantPicsToGallery() {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         File restaurantFile = new File(currentPhotoPath);
@@ -252,6 +238,8 @@ public class PropertyDetailFragment extends Fragment implements View.OnClickList
         mediaScanIntent.setData(restaurantPhotoUri);
         getActivity().sendBroadcast(mediaScanIntent);
     }
+    */
+
     public void encodeBitmapAndSaveToFirebase(Bitmap bitmap) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
@@ -260,14 +248,12 @@ public class PropertyDetailFragment extends Fragment implements View.OnClickList
                 .getReference(Constants.FIREBASE_CHILD_RESTAURANTS)
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .child(mProperty.getPushId())
-                .child("imageUrl");
+                .child("propertyImage");
         ref.setValue(imageEncoded);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        // Inflate the layout for this fragment
 
         View view =  inflater.inflate(R.layout.fragment_property_detail, container, false);
         ButterKnife.bind(this, view);
@@ -280,7 +266,6 @@ public class PropertyDetailFragment extends Fragment implements View.OnClickList
                 e.printStackTrace();
             }
         } else {
-            // This block of code should already exist, we're just moving it to the 'else' statement:
             Picasso.get()
                     .load(mProperty.getPropertyImage())
                     .into(mImageLabel);
@@ -306,23 +291,6 @@ public class PropertyDetailFragment extends Fragment implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        /*if (v == mSaveRestaurantButton) {
-            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-            String uid = user.getUid();
-            DatabaseReference restaurantRef = FirebaseDatabase
-                    .getInstance()
-                    .getReference(Constants.FIREBASE_CHILD_RESTAURANTS)
-                    .child(uid);
-
-            DatabaseReference pushRef = restaurantRef.push();
-            String pushId = pushRef.getKey();
-            mProperty.setPushId(pushId);
-            pushRef.setValue(mProperty);
-
-            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
-        }
-
-         */
         if (v == mPhoneLabel){
             Intent phoneIntent = new Intent(Intent.ACTION_DIAL,Uri.parse("tel:" + mProperty.getValue()));
             startActivity(phoneIntent);
