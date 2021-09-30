@@ -25,7 +25,11 @@
         </activity>
         <activity
             android:name=".UI.SavedPropertyListActivity"
-            android:exported="true" />
+            android:exported="true">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.example.prettyalphas.UI.MainActivity" />
+        </activity>
         <activity
             android:name=".UI.property_location"
             android:exported="true">
@@ -53,7 +57,7 @@
         </activity>
 
         <provider
-            android:name="android.support.v4.content.FileProvider"
+            android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.prettyalphas.provider"
             android:exported="false"
             android:grantUriPermissions="true">

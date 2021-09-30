@@ -103,11 +103,7 @@ import butterknife.ButterKnife;
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        if (mSource.equals(Constants.SOURCE_SAVED)) {
-            inflater.inflate(R.menu.menu_photo, menu);
-        } else {
-            inflater.inflate(R.menu.menu_main, menu);
-        }
+        inflater.inflate(R.menu.menu_photo, menu);
     }
 
     @Override
